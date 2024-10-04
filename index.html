@@ -40,8 +40,8 @@
     <div><h1 class="text-center">便利ツール</h1></div>
 </br>
     <div class="btn-group">
-        <button id="randomButton" class="btn btn-info" onclick="">随時数</button>
-        <button id="timerButton" class="btn btn-primary" onclick="">定時機</button>
+        <button id="randomBtcn" class="btn btn-info" onclick="">随時数(CN)</button>
+        <button id="randomBtjp" class="btn btn-primary" onclick="">随時数(JP)</button>
     </div>
 </br>
     <footer> 
@@ -49,11 +49,14 @@
     </footer>
 
     <script>
-        document.getElementById('randomButton').addEventListener('click', function() {
+        document.getElementById('randomBtcn').addEventListener('click', function() {
+            window.location.href = 'tools/random_cn.html'; 
+        });
+        document.getElementById('randomBtjp').addEventListener('click', function() {
             window.location.href = 'tools/random_jp.html'; 
         });
-        document.getElementById('timerButton').addEventListener('click', function() {
-            window.location.href = 'tools/timerOn.html'; 
-        });
+        // document.getElementById('timerButton').addEventListener('click', function() {
+        //     window.location.href = 'tools/timerOn.html'; 
+        // });
     </script>
 </body>
