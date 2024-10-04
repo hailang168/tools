@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>計時機</title>
+    <style>
+        .btn {
+            display: flex;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            padding: 10px 30px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+        }
+
+        .btn-primary {
+            background-color: #008CBA;
+        }
+
+        .btn-secondary{
+            background-color: #817d7d;
+        }
+
+        body {
+            margin: auto 15px;
+            text-align: center;
+        }
+
+        .input-label {
+            background-color: Lavender;
+            border-radius: 8px;
+            border: none;
+            padding: 3px 10px;
+        }
+        #minutes{
+            background-color: aquamarine;
+            text-align: center;
+            font-weight: bold;
+            margin: 5px;
+            padding: 5px;
+            font-size: 20px;
+        }
+        #outputField {
+            background-color: yellow;
+            color:#817d7d;
+            text-align: center;
+            border: none;
+            font-weight: bold;
+            margin: 5px;
+            padding: 5px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div style="padding:5px; background: navy;"></div>
+    <div>
+        <h1 class="text-center">計時機</h1>
+    </div>
+    <label class="input-label">間隔時間(秒)：</label>
+    <input type="number" id="minutes" name="min" value="30" min="1" max="">
+    <br><br>
+    <label class="input-label">経過時間(分)：</label>
+    <input type="text" readonly id="outputField" placeholder="0時間0分0秒">
+    <br><br>
+    <button id="generateButton" class="btn btn-primary" onclick="generation()">開 始</button>
+    <button id="resetButton" class="btn btn-secondary" onclick="resetFields()">リセット</button>
+</br></br></br>
+    <footer> 
+         <div class="footer-copyright text-center">Copyright © 2025 Hailang All Rights Reserved. </div>
+    </footer>
+
+    <script>
+        let generating = false;
+        let icnt = 0;
+        const outputField = document.getElementById('outputField');
+        const minutes = document.getElementById('minutes');
+        let timer;
+
+        function generation() {
+            const button = document.getElementById('generateButton');
+            if (generating) {
+                button.textContent = '開 始';
+                button.style.backgroundColor = '#008CBA';
+                generating = false;
+                clearInterval(timer);
+            } else {
+                button.textContent = '停 止';
+                button.style.backgroundColor = '#f44336';
+                generating = true;
+                startTimer();
+            }
+        }
+
+        function startTimer() {
+            const seconds = parseInt(minutes.value);
+            timer = setInterval(simulateKeyPress, seconds * 1000);
+        }
+
+        function simulateKeyPress() {
+            const keyEvent = new KeyboardEvent('keydown', {
+                key: 'a',
+                code: 'KeyA',
+                keyCode: 65,
+                charCode: 65,
+                which: 65,
+                bubbles: true
+            });
+            outputField.dispatchEvent(keyEvent);
+            icnt++;
+            let sec = icnt * minutes.value
+            let hour = Math.floor(sec / 3600);
+            let min = Math.floor(sec % 3600 / 60);
+            let rem = sec % 60;
+            outputField.value = `${hour}時間${min}分${rem}秒`;
+            outputField.style.color= "red";
+        }
+
+        function resetFields() {
+            const button = document.getElementById('generateButton');
+            button.textContent = '開 始';
+            button.style.backgroundColor = '#008CBA';
+            minutes.value = 30;
+            outputField.value = "0時間0分0秒";
+            outputField.style.color = '#817d7d';
+            icnt = 0;
+            generating = false;
+            clearInterval(timer);
+        }
+        
+    </script>
+</body>
+</html>

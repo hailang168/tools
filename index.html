@@ -3,41 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="" />
-    <title>乱数生成機</title>
+    <title>hailang tool</title>
     <style>
-        .highlight-current {
-            background-color: yellow;
-            color: red;
-        }
-        .highlight-previous {
-            background-color: gray;
-            color: white;
-        }
-        td {
-            border: 1px solid #CCCCCC;
-        }
-        .current-number {
-            color: red;
-            font-weight: bold;
-            text-align: center;
-            display: block;
-            margin: 20px 0;
-            font-size: 130px;
-        }
-        .grid {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .grid-container {
-            grid-template-columns: auto auto auto auto;
-            padding: 5px;
-            grid-gap: 10px;
-        }
         .btn-group {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 20px;
         }
         .btn {
             border-radius: 8px;
@@ -54,18 +25,6 @@
         .btn-primary{
             background-color: #008CBA;
         }
-        .btn-secondary{
-            background-color: #817d7d;
-        }
-        .history-table  {
-            margin-left: auto;
-            margin-right: auto;
-            border-collapse: collapse;
-            align-content: center;
-            text-align: center;
-            width:90%;
-            padding: 3px;
-        }
         footer {
             margin-top: 3px;
             color: gray;
@@ -75,259 +34,26 @@
             margin: auto 15px;
             text-align: center;
         }
-        .input-label {
-            background-color: Lavender;
-            border-radius: 8px;
-            border: none;
-            padding: 3px 10px;
-        }
-        .input-text {
-            text-align: center;
-            font-weight: bold;
-            border: none;
-            margin: 5px;
-            padding: 3px;
-        }
-        .radio-container {
-            text-align: center;
-            margin: 5px;
-            padding: 5px;
-        }
-        .sp-info {
-            text-align: left;
-            background-color: #EEFFFF ;
-            padding: 3px;
-            font-size: 12px;
-            margin: 5px;
-            line-height: 10px;
-            text-indent: 10px;
-        }
     </style>
 </head>
 <body>
-    <div style="padding:5px; background: navy;"> 
-        <!-- <header style="text-align: left; color: white; background: #182737;">&nbsp;沈阳市第126中学</header>
-        <header style="text-align: left; color: white; background: #182737;">&nbsp;&nbsp;沈阳市和平一校（长白岛二分校）</header>
-        <header style="text-align: left; color: white; background: #182737;">&nbsp;&nbsp;沈阳市沈西育人学校</header> -->
-    </div>
-    <div><h1 class="text-center">乱数生成機</h1></div>
-    <table class="grid" >
-        <tr class="grid-container">
-            <td class="input-label">&nbsp;最小値&nbsp;</td>
-            <td><input type="number" id="min" name="min" class="input-text" value="1" min="1" max="1000" required></td>
-            <td class="input-text" style="width: 10px;"></td>
-            <td class="input-label">生成個数</td>
-            <td><input type="number" id="count" name="count" class="input-text" value="1" min="1" max="1000" required></td>
-        </tr>
-        <tr style="height: 5px;"></tr>
-        <tr class="grid-container">
-            <td class="input-label">&nbsp;最大値&nbsp;</td>
-            <td><input type="number" id="max" name="max" class="input-text" value="75" min="1" max="1000" required> </td>
-            <td class="input-text" style="width: 10px;"></td>
-            <td class="input-label">表示列数</td>
-            <td><input type="number" id="cols" name="cols" class="input-text" value="10" min="1" max="20" required> </td>
-        </tr>
-    </table>
-    <div class="radio-container">
-        <label>値の重複：&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input type="radio" name="allowDuplicates" id="allowFalse" value="false" checked="true">不可&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="radio" name="allowDuplicates" id="allowTrue" value="true">許可&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </div>
-    <!-- <div >
-        <label  for="only">重複可否</label> 
-        <select id="allowDuplicates" name="allowDuplicates" >
-            <option value="false">不重复</option>
-            <option value="true">可重复</option>
-        </select>
-    </div> -->
+    <div><h1 class="text-center">便利ツール</h1></div>
 </br>
     <div class="btn-group">
-        <button id="createButton" class="btn btn-info" onclick="toggleGeneration(true)">生 成</button>
-        <button id="generateButton" class="btn btn-primary" onclick="toggleGeneration(false)">開 始</button>
-        <button id="resetButton" class="btn btn-secondary" onclick="resetFields()">Reset</button>
+        <button id="randomButton" class="btn btn-info" onclick="">随時数</button>
+        <button id="timerButton" class="btn btn-primary" onclick="">定時機</button>
     </div>
-    <div id="currentNumber" class="current-number"></div>
-    <div class="history">
-        <p>---------------★実施結果★---------------</p>
-        <table id="historyTable" class="history-table"></table>
-    </div></br>
-    <div id="comment-info" class="sp-info">
-        <p>■機能説明：</p>
-        <p>・入力された最小値と最大値の間の乱数を生成します。</p>
-        <p>・入力値は整数・半角数字(1～1000)で入力してください。</p>
-        <p>・「表示列数」の値は(1～20)で入力可能です。</p>
-        <p>・「値の重複」に選択すると、重複する値を出力します。</p>
-        <p>・動作環境：PC、スマホのブラウザで利用できます。</p>
-    </div>
-    <!-- Footer -->
+</br>
     <footer> 
-        <!-- <a><img id="logo" src="https://www.flying-stone.com/files/user/img/logo.png?v=1487082114" width= "50%" alt="羽石株式会社 flying-stone Co., Ltd" /></a>-->
-        <!-- <a><img src="http://www.multi-tech.co.jp/img/top-logo.svg" width= "50%" alt="株式会社 マルチテクノロジー Multi Technology Co., Ltd" /></a> -->
-        <div class="footer-copyright text-center">Copyright © 2025 Hailang All Rights Reserved. </div>
+         <div class="footer-copyright text-center">Copyright © 2025 Hailang All Rights Reserved. </div>
     </footer>
 
     <script>
-        let history = [];
-        let intervalId;
-        let generating = false;
-        let isMobile = true;
-        
-        // 端末の判断
-        document.addEventListener("DOMContentLoaded", function() {
-            var userAgent = navigator.userAgent.toLowerCase();
-            isMobile = /iphone|ipod|android.*mobile|windows.*phone|harmonyos|blackberry.*mobile/.test(userAgent);
-            if (!isMobile) {
-                console.log("PCまたはタブレットです");
-                var buttons = document.querySelectorAll("button");
-                // ボタン横幅
-                buttons.forEach(function(button) {
-                    button.style.width = "20%";
-                });
-                // 説明欄
-                document.getElementById('comment-info').style.textIndent="15%";
-                document.getElementById('logo').style.width="350px";
-            }
+        document.getElementById('randomButton').addEventListener('click', function() {
+            window.location.href = 'tools/random_jp.html'; 
         });
-
-        function toggleGeneration(flgGeneration) {
-            const min = parseInt(document.getElementById('min').value);
-            const max = parseInt(document.getElementById('max').value);
-            const cols = parseInt(document.getElementById('cols').value);
-            const count = parseInt(document.getElementById('count').value);
-            // const allowDuplicates = document.getElementById('allowDuplicates').value === 'true';
-            const allowDuplicates = document.getElementById('allowTrue').checked;
-            const currentNumberDiv = document.getElementById('currentNumber');
-
-            // 入力チェック
-            if (isNaN(min) || isNaN(max) || isNaN(count) || isNaN(cols) || min <= 0 || max <= 0 || count <= 0 || cols <= 0|| min > 1000 || max > 1000 || count > 1000 || cols > 20) {
-                alert('入力値は整数・半角数字（1～1000）で入力してください。\n※「表示列数」にはMAX（20）まで入力可能です。');
-                return;
-            }
-            else if (min >= max) {
-                alert('最大値が最小値より大きくなるよう入力してください。');
-                return;
-            }
-
-            // ボタンの判断
-            if (flgGeneration){
-                // 直接生成
-                finalizeGeneration(min, max, cols, count, allowDuplicates, currentNumberDiv);
-            } else {
-                const button = document.getElementById('generateButton');
-                // 計時器で生成
-                if (generating) {
-                    clearInterval(intervalId);
-                    button.textContent = '開 始';
-                    button.style = "background-color: #008CBA;"
-                    generating = false;
-                    finalizeGeneration(min, max, cols, count, allowDuplicates, currentNumberDiv);
-                } else {
-                    button.textContent = '停 止';
-                    button.style = "background-color: #f44336;"
-                    generating = true;
-                    startGeneration(min, max, currentNumberDiv);
-                }
-                if (!isMobile) {
-                    button.style.width = "20%";
-                }
-            }
-        }
-
-        function startGeneration(min, max, currentNumberDiv) {
-            intervalId = setInterval(() => {
-                const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-                currentNumberDiv.textContent = randomNumber;
-            }, 30);
-        }
-
-        function finalizeGeneration(min, max, cols, count, allowDuplicates, currentNumberDiv) {
-
-            let generatedNumbers = [];
-            for (let i = 0; i < count; i++) {
-                let randomNumber;
-                if (allowDuplicates) {
-                    randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-                } else {
-                    const availableNumbers = [];
-                    for (let j = min; j <= max; j++) {
-                        if (!history.includes(j) && !generatedNumbers.includes(j)) {
-                            availableNumbers.push(j);
-                        }
-                    }
-                    if (availableNumbers.length === 0) {
-                        alert('すべて数字が生成完了しました。リセットしてください。');
-                        break;
-                    }
-                    randomNumber = availableNumbers[Math.floor(Math.random() * availableNumbers.length)];
-                }
-                generatedNumbers.push(randomNumber);
-            }
-            currentNumberDiv.innerHTML = formatNumbers(generatedNumbers, 5);
-            adjustFontSize(generatedNumbers.length);
-            history.push(...generatedNumbers);
-            updateHistory(min, max, cols, generatedNumbers);
-        }
-
-        function updateHistory(min, max, cols, generatedNumbers) {
-            const historyTable = document.getElementById('historyTable');
-            historyTable.innerHTML = '';
-
-            if (!isMobile) {
-                historyTable.style.width="70%";
-            }
-
-            let row;
-            for (let i = min; i <= max; i++) {
-                if ((i - min) % cols === 0) {
-                    row = document.createElement('tr');
-                    historyTable.appendChild(row);
-                }
-                const td = document.createElement('td');
-                td.textContent = i;
-                if (generatedNumbers.includes(i)) {
-                    td.classList.add('highlight-current');
-                } else if (history.includes(i)) {
-                    td.classList.add('highlight-previous');
-                }
-                row.appendChild(td);
-            }
-        }
-
-        function formatNumbers(numbers, maxPerLine) {
-            let formatted = '';
-            for (let i = 0; i < numbers.length; i++) {
-                if (i > 0 && i % maxPerLine === 0) {
-                    formatted += '<br>';
-                }
-                formatted += numbers[i] + '  ';
-            }
-            return formatted.trim();
-        }
-
-        function adjustFontSize(count) {
-            const currentNumberDiv = document.getElementById('currentNumber');
-            if (count == 1) {
-                currentNumberDiv.style.fontSize = '120px';
-            } else if (count <= 3) {
-                currentNumberDiv.style.fontSize = '80px';
-            } else if (count <= 5) {
-                currentNumberDiv.style.fontSize = '45px';
-            } else {
-                currentNumberDiv.style.fontSize = '45px';
-            }
-        }
-
-        function resetFields() {
-            document.getElementById('min').value = 1;
-            document.getElementById('max').value = 75;
-            document.getElementById('count').value = 1;
-            document.getElementById('cols').value = 10;
-            // document.getElementById('allowDuplicates').value = 'false';
-            document.getElementById('allowFalse').checked = 'true';
-            document.getElementById('currentNumber').innerHTML = '';
-            document.getElementById('historyTable').innerHTML = '';
-            history = [];
-        }
+        document.getElementById('timerButton').addEventListener('click', function() {
+            window.location.href = 'tools/timerOn.html'; 
+        });
     </script>
 </body>
-</html>
