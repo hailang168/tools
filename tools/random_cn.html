@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="" />
-    <title>随机号码生成器</title>
+    <title>随机数生成器</title>
     <style>
         .highlight-current {
             background-color: yellow;
@@ -106,10 +106,8 @@
 </head>
 <body>
     <div style="padding:5px; background: navy;"> 
-        <!-- <header style="text-align: left; color: white; background: #182737;">&nbsp;沈阳市第126中学</header> -->
-        <!-- <header style="text-align: left; color: white; background: #182737;">&nbsp;&nbsp;沈阳市和平一校（长白岛二分校）</header> -->
-        <!-- <header style="text-align: left; color: white; background: #182737;">&nbsp;&nbsp;沈阳市沈西育人学校</header> -->
-    </div>
+        <!-- <header style="text-align: left; color: white; background: #182737;">&nbsp;海浪科技</header> -->
+   </div>
     <div><h1 class="text-center">随机号码生成器</h1></div>
     <table class="grid" >
         <tr class="grid-container">
@@ -133,13 +131,6 @@
         <input type="radio" name="allowDuplicates" id="allowFalse" value="false" checked="true">不重复&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="radio" name="allowDuplicates" id="allowTrue" value="true">可重复&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
-    <!-- <div >
-        <label  for="only">重複可否</label> 
-        <select id="allowDuplicates" name="allowDuplicates" >
-            <option value="false">不重复</option>
-            <option value="true">可重复</option>
-        </select>
-    </div> -->
 </br>
     <div class="btn-group">
         <button id="createButton" class="btn btn-info" onclick="toggleGeneration(true)">生 成</button>
@@ -148,7 +139,7 @@
     </div>
     <div id="currentNumber" class="current-number"></div>
     <div class="history">
-        <p>---------------★抽选结果★---------------</p>
+        <p>---------------★执行结果★---------------</p>
         <table id="historyTable" class="history-table"></table>
     </div></br>
     <div id="comment-info" class="sp-info">
@@ -158,7 +149,7 @@
         <p>・表示列数的值必须是（1～20）的整数。</p>
         <p>・允许重复的情况下会随机生成重复的号码。</p>
         <p>・用浏览器打开文件即可使用（特殊浏览器除外）。</p>
-    </div>
+    </div></br>
     <!-- Footer -->
     <footer> 
         <!-- <a><img id="logo" src="https://www.flying-stone.com/files/user/img/logo.png?v=1487082114" width= "50%" alt="羽石株式会社 flying-stone Co., Ltd" /></a> -->

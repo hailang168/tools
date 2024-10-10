@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="jp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,7 +63,7 @@
     <label class="input-label">間隔時間(秒)：</label>
     <input type="number" id="minutes" name="min" value="30" min="1" max="">
     <br><br>
-    <label class="input-label">経過時間(分)：</label>
+    <label class="input-label">累積時間(分)：</label>
     <input type="text" readonly id="outputField" placeholder="0時間0分0秒">
     <br><br>
     <button id="generateButton" class="btn btn-primary" onclick="generation()">開 始</button>
@@ -101,15 +101,16 @@
         }
 
         function simulateKeyPress() {
-            const keyEvent = new KeyboardEvent('keydown', {
-                key: 'a',
-                code: 'KeyA',
-                keyCode: 65,
-                charCode: 65,
-                which: 65,
-                bubbles: true
+            let event = new KeyboardEvent('keydown', {
+                key: 'Tab',
+                keyCode: 9,
+                code: 'Tab',
+                which: 9,
+                shiftKey: false,
+                ctrlKey: false,
+                metaKey: false
             });
-            outputField.dispatchEvent(keyEvent);
+            document.dispatchEvent(event);
             icnt++;
             let sec = icnt * minutes.value
             let hour = Math.floor(sec / 3600);

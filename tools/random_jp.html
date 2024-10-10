@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="jp">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -106,6 +106,7 @@
 </head>
 <body>
     <div style="padding:5px; background: navy;"> 
+        <!-- <header style="text-align: left; color: white; background: #182737;">&nbsp;〇〇株式会社</header>-->
     </div>
     <div><h1 class="text-center">乱数生成機</h1></div>
     <table class="grid" >
@@ -130,6 +131,13 @@
         <input type="radio" name="allowDuplicates" id="allowFalse" value="false" checked="true">不可&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="radio" name="allowDuplicates" id="allowTrue" value="true">許可&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
+    <!-- <div >
+        <label  for="only">重複可否</label> 
+        <select id="allowDuplicates" name="allowDuplicates" >
+            <option value="false">不重复</option>
+            <option value="true">可重复</option>
+        </select>
+    </div> -->
 </br>
     <div class="btn-group">
         <button id="createButton" class="btn btn-info" onclick="toggleGeneration(true)">生 成</button>
@@ -148,10 +156,10 @@
         <p>・「表示列数」の値は(1～20)で入力可能です。</p>
         <p>・「値の重複」に選択すると、重複する値を出力します。</p>
         <p>・PCとスマートフォンのブラウザで利用できます。</p>
-    </div>
+    </div></br>
     <!-- Footer -->
     <footer> 
-        <!-- <a><img id="logo" src="https://www.flying-stone.com/files/user/img/logo.png?v=1487082114" width= "50%" alt="羽石株式会社 flying-stone Co., Ltd" /></a>-->
+        <!-- <a><img id="logo" src="https://www.flying-stone.com/files/user/img/logo.png?v=1487082114" width= "50%" alt="羽石株式会社 flying-stone Co., Ltd" /></a> -->
         <!-- <a><img src="http://www.multi-tech.co.jp/img/top-logo.svg" width= "50%" alt="株式会社 マルチテクノロジー Multi Technology Co., Ltd" /></a> -->
         <div class="footer-copyright text-center">Copyright © 2025 Hailang All Rights Reserved. </div>
     </footer>
