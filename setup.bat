@@ -27,6 +27,8 @@ if %errorlevel% neq 0 (
 )
 
 REM echo 管理者 OK
+SET parentDir=%~dp0
+cd %parentDir%
 
 REM メイン処理
 :REC_MENU
@@ -53,16 +55,18 @@ IF "%MENU_REC%" EQU "1" (
 
 REM Officeインストール
 :INSTALL
-　setup /configure config.xml
-　
+setup /configure config.xml
+pause
+GOTO :REC_MENU
+ 
 REM kmsで認証実行
 :ACTIVE
 REM Method 1：アクティブ化
-　cd C:\Program Files\Microsoft Office\Office16
-　REM slmgr /skms kms.03k.org
-　REM slmgr /ato
-　cscript ospp.vbs /sethst:kms.03k.org
-　cscript ospp.vbs /act
+cd C:\Program Files\Microsoft Office\Office16
+REM slmgr /skms kms.03k.org
+REM slmgr /ato
+cscript ospp.vbs /sethst:kms.03k.org
+cscript ospp.vbs /act
 　
 REM Method 2： - PowerShell (Recommended)
 REM irm https://massgrave.dev/get | iex
