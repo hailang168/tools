@@ -316,15 +316,17 @@
         }
 
         function resetFields() {
-            document.getElementById('min').value = 1;
-            document.getElementById('max').value = 75;
-            document.getElementById('count').value = 1;
-            document.getElementById('cols').value = 10;
-            // document.getElementById('allowDuplicates').value = 'false';
-            document.getElementById('allowFalse').checked = 'true';
-            document.getElementById('currentNumber').innerHTML = '';
-            document.getElementById('historyTable').innerHTML = '';
-            history = [];
+            if (window.confirm('このアクションが実行中なので、リセット操作を実行しますか？')){
+                document.getElementById('min').value = 1;
+                document.getElementById('max').value = 75;
+                document.getElementById('count').value = 1;
+                document.getElementById('cols').value = 10;
+                // document.getElementById('allowDuplicates').value = 'false';
+                document.getElementById('allowFalse').checked = 'true';
+                document.getElementById('currentNumber').innerHTML = '';
+                document.getElementById('historyTable').innerHTML = '';
+                history = [];
+            }
         }
     </script>
 </body>
