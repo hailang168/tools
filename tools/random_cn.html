@@ -307,15 +307,17 @@
         }
 
         function resetFields() {
-            document.getElementById('min').value = 1;
-            document.getElementById('max').value = 75;
-            document.getElementById('count').value = 1;
-            document.getElementById('cols').value = 10;
-            // document.getElementById('allowDuplicates').value = 'false';
-            document.getElementById('allowFalse').checked = 'true';
-            document.getElementById('currentNumber').innerHTML = '';
-            document.getElementById('historyTable').innerHTML = '';
-            history = [];
+            if (window.confirm('程序正在执行中，真的要进行重置操作吗？')){
+                document.getElementById('min').value = 1;
+                document.getElementById('max').value = 75;
+                document.getElementById('count').value = 1;
+                document.getElementById('cols').value = 10;
+                // document.getElementById('allowDuplicates').value = 'false';
+                document.getElementById('allowFalse').checked = 'true';
+                document.getElementById('currentNumber').innerHTML = '';
+                document.getElementById('historyTable').innerHTML = '';
+                history = [];
+            }
         }
     </script>
 </body>
